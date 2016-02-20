@@ -4,6 +4,8 @@ Generate [random UUIDs](https://en.wikipedia.org/wiki/Universally_unique_identif
 with better [statistical dispersion](https://en.wikipedia.org/wiki/Statistical_dispersion)
 than `Math.random()`.
 
+## Install
+
     npm install uuid-random
 
 ## Features
@@ -12,7 +14,7 @@ than `Math.random()`.
   * Uses best RNG available to minimize collisions
   * Works in browser or server-side
 
-## Use it anywhere
+## Example Usage
 
 ### Node
 
@@ -30,6 +32,18 @@ uuid(); // '0b99b82f-62cf-4275-88b3-de039020f14e'
 </script>
 ```
 
-# License
+## Rationale
+
+`Math.random()` sucks for uuid generation.
+
+After digging through npm and
+[stackoverflow](http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript/2117523#2117523),
+I settled on using [node-uuid](https://github.com/broofa/node-uuid) to take
+advantage of better RNG when possible.
+
+However, I am a fan of simplicity, so I [researched](https://gist.github.com/jed/982883)
+a *much* more compact version that still used the best RNG available.
+
+## License
 
 MIT
