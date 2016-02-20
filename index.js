@@ -1,7 +1,12 @@
 (function(){
 
-  module && (module.exports = uuid);
-  window && (window.uuid = uuid);
+  // Node & Browser support
+  if ((typeof module !== 'undefined') && (typeof require === 'function')) {
+    crypto = require('crypto');
+    module.exports = uuid;
+  } else if (typeof window !== 'undefined') {
+    window.uuid = uuid;
+  }
 
   function uuid(a){
   	return a
