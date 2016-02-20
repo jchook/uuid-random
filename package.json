@@ -1,0 +1,24 @@
+{
+  "name": "uuid-v4",
+  "version": "1.0.0",
+  "description": "Tiny UUIDv4 with good RNG",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jchook/uuid-v4.git"
+  },
+  "keywords": [
+    "uuid",
+    "v4",
+    "tiny"
+  ],
+  "author": "Wes Roberts",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jchook/uuid-v4/issues"
+  },
+  "homepage": "https://github.com/jchook/uuid-v4#readme"
+}
