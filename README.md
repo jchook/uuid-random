@@ -27,6 +27,7 @@ faster** than comparable libraries.
   * 0.3k minified + gzipped
   * Uses [better RNG](http://caniuse.com/#feat=getrandomvalues) when possible
   * Works in browser or node
+  * Very fast!
 
 
 ## Example Usage
