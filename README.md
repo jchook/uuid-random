@@ -1,18 +1,33 @@
 # uuid-random
 
-Generate [random UUIDs](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_.28random.29)
+Generate [random UUIDv4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_.28random.29)
 with better [statistical dispersion](https://en.wikipedia.org/wiki/Statistical_dispersion)
 than `Math.random()`.
+
 
 ## Install
 
     npm install uuid-random
 
+
+## Performance
+
+This is the fastest pure javascript UUID generator I have found, almost **5x 
+faster** than comparable libraries.
+
+| npm package     | performance      |
+|-----------------|------------------|
+| uuid            | 370k ops/sec     |
+| node-uuid       | 370k ops/sec     |
+| **uuid-random** | **1.7M ops/sec** |
+
+
 ## Features
 
   * 0.3k minified + gzipped
-  * Uses best RNG available to minimize collisions
-  * Works in browser or server-side
+  * Uses [better RNG](http://caniuse.com/#feat=getrandomvalues) when possible
+  * Works in browser or node
+
 
 ## Example Usage
 
@@ -41,8 +56,9 @@ After digging through npm and
 I settled on using [node-uuid](https://github.com/broofa/node-uuid) to take
 advantage of better RNG when possible.
 
-However, I am a fan of simplicity, so I [researched](https://gist.github.com/jed/982883)
-a *much* more compact version that still used the best RNG available.
+I wasn't happy with the solution so I combined code from the best libs and
+[researched](https://gist.github.com/jed/982883) a *much* faster, more compact 
+version that still used the best RNG available to the platform.
 
 ## License
 

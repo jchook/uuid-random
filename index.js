@@ -1,5 +1,16 @@
 (function(){
 
+  var i;
+  var bytes;
+  var bytesIdx = 0;
+  var bytesSize = 256;
+  var hexBytes = [];
+
+  // Cache toString(16)
+  for (i = 0; i < 256; i++) {
+    hexBytes[i] = (i + 0x100).toString(16).substr(1);
+  }
+
   // Node & Browser support
   if ((typeof module !== 'undefined') && (typeof require === 'function')) {
     crypto = require('crypto');
@@ -8,22 +19,56 @@
     window.uuid = uuid;
   }
 
-  function uuid(a){
-  	return a
-  		? (a^rng(16)>>a/4).toString(16)
-  		: ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g,uuid)
-  	;
+  // From MDN docs
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
   }
 
-  function rng(n) {
-  	if (crypto) {
-  		if (crypto.getRandomValues) {
-  			return crypto.getRandomValues(new Uint8Array(1))[0] % n;
-  		} else if (crypto.randomBytes) {
-  			return crypto.randomBytes(1)[0] % n;
-  		}
-  	}
-  	return Math.random() * n;
+  function randomBytes(n) {
+    if (crypto) {
+      if (!bytes || ((bytesIdx + n) >= bytesSize)) {
+        bytesIdx = 0;
+        if (crypto.getRandomValues) {
+          bytes = new Uint8Array(bytesSize);
+          crypto.getRandomValues(bytes);
+        } else if (crypto.randomBytes) {
+          bytes = crypto.randomBytes(bytesSize);
+        } else {
+          throw new Error('Non-standard crypto library');
+        }
+      }
+      return bytes.slice(bytesIdx, bytesIdx += n);
+    } else {
+      r = [];
+      for (i=0; i<n; i++) {
+        r.push(getRandomInt(0, 16));
+      }
+      return r;
+    }
+  }
+
+  function uuidbin() {
+    var bytes = randomBytes(16);
+    bytes[6] = (bytes[6] & 0x0f) | 0x40;
+    bytes[8] = (bytes[8] & 0x3f) | 0x80;
+    return bytes;
+  }
+
+  // Replace this with a better version?
+  function uuid() {
+    var bytes = uuidbin();
+    return
+      hexBytes[bytes[0]] + hexBytes[bytes[1]] +
+      hexBytes[bytes[2]] + hexBytes[bytes[3]] + '-' +
+      hexBytes[bytes[4]] + hexBytes[bytes[5]] + '-' +
+      hexBytes[bytes[6]] + hexBytes[bytes[7]] + '-' +
+      hexBytes[bytes[8]] + hexBytes[bytes[9]] + '-' +
+      hexBytes[bytes[10]] + hexBytes[bytes[11]] +
+      hexBytes[bytes[12]] + hexBytes[bytes[13]] +
+      hexBytes[bytes[14]] + hexBytes[bytes[15]]
+    ;
   }
 
 })();

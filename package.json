@@ -1,7 +1,7 @@
 {
   "name": "uuid-random",
   "version": "1.0.0",
-  "description": "Tiny UUIDv4 with good RNG",
+  "description": "Fastest UUIDv4 with good RNG",
   "main": "index.js",
   "scripts": {
     "test": "node test.js"
@@ -12,6 +12,7 @@
   },
   "keywords": [
     "uuid",
+    "fast",
     "random",
     "v4",
     "tiny"
@@ -19,7 +20,7 @@
   "author": "Wes Roberts",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jchook/uuid-v4/issues"
+    "url": "https://github.com/jchook/uuid-random/issues"
   },
-  "homepage": "https://github.com/jchook/uuid-v4#readme"
+  "homepage": "https://github.com/jchook/uuid-random#readme"
 }
