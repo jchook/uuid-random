@@ -7,6 +7,7 @@
   var hexBytes = [];
 
   // Cache toString(16)
+  // This is massively impactful on performance
   for (i = 0; i < 256; i++) {
     hexBytes[i] = (i + 0x100).toString(16).substr(1);
   }
@@ -26,6 +27,7 @@
     return Math.floor(Math.random() * (max - min)) + min;
   }
 
+  // Use best RNG as possible
   function randomBytes(n) {
     if (crypto) {
       if (!bytes || ((bytesIdx + n) >= bytesSize)) {
@@ -49,6 +51,7 @@
     }
   }
 
+  // This should be exposed?
   function uuidbin() {
     var bytes = randomBytes(16);
     bytes[6] = (bytes[6] & 0x0f) | 0x40;
@@ -56,7 +59,7 @@
     return bytes;
   }
 
-  // Replace this with a better version?
+  // String UUIDv4 (Random)
   function uuid() {
     var bytes = uuidbin();
     return
