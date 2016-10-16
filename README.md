@@ -12,14 +12,14 @@ than `Math.random()`.
 
 ## Performance
 
-This is the fastest pure javascript UUID generator I have found, almost **5x 
+This is the fastest pure javascript UUIDv4 generator I have found, almost **5x 
 faster** than comparable libraries.
 
-| npm package     | performance      |
-|-----------------|------------------|
-| uuid            | 370k ops/sec     |
-| node-uuid       | 370k ops/sec     |
-| **uuid-random** | **1.7M ops/sec** |
+| npm package     | performance        |
+|-----------------|--------------------|
+| uuid            | 370k ops/sec       |
+| node-uuid       | 370k ops/sec       |
+| **uuid-random** | **1.618M ops/sec** |
 
 
 ## Features
