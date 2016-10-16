@@ -57,11 +57,11 @@ uuid(); // '0b99b82f-62cf-4275-88b3-de039020f14e'
 
 `Math.random()` sucks for uuid generation.
 
-After digging through [npm](https://www.npmjs.com/search?q=uuid) and
-[stackoverflow](http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript/2117523#2117523),
+After digging through [npm](https://www.npmjs.com/search?q=uuid)
 I settled on using [node-uuid](https://github.com/broofa/node-uuid) to take
-advantage of better RNG when possible. It's a great lib, but overkill for me. 
-So, I combined code from the best libs and
+advantage of better RNG when possible. It's a great lib, but seemed too large
+and featured compared to my prefered [oneliner-ish solution](http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript/2117523#2117523).
+So, I combined ideas from the better implementations and
 [researched](https://gist.github.com/jed/982883) a *much* faster, more focused 
 uuid generator that still used the best RNG available to the platform.
 
