@@ -1,6 +1,6 @@
 1.0.0
 
-Initial release
+Initial release.
 
 
 1.0.1
@@ -10,4 +10,9 @@ Increased performance dramatically - now the fastest pure JS UUIDv4 generator.
 
 1.0.2
 
-Bug fixes
+Bug fix.
+
+
+1.0.3
+
+Verified RFC-4122 compliance.

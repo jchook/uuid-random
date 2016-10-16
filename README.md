@@ -1,7 +1,9 @@
 # uuid-random
 
-Generate [random UUIDv4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_.28random.29)
-with better [statistical dispersion](https://en.wikipedia.org/wiki/Statistical_dispersion)
+Generate RFC-4122 compliant 
+[random UUIDv4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_.28random.29)
+with better 
+[statistical dispersion](https://en.wikipedia.org/wiki/Statistical_dispersion)
 than `Math.random()`.
 
 
@@ -24,7 +26,6 @@ faster** than comparable libraries.
 | uuid            | 370k ops/sec       |
 | **uuid-random** | **1.618M ops/sec** |
 
-Yep, the golden ratio. The benchmark file I used is available in this repo.
 
 
 ## Features
@@ -60,9 +61,8 @@ uuid(); // '0b99b82f-62cf-4275-88b3-de039020f14e'
 After digging through [npm](https://www.npmjs.com/search?q=uuid) and
 [stackoverflow](http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript/2117523#2117523),
 I settled on using [node-uuid](https://github.com/broofa/node-uuid) to take
-advantage of better RNG when possible.
-
-I wasn't happy with the solution so I combined code from the best libs and
+advantage of better RNG when possible. It's a great lib, but overkill for me. 
+So, I combined code from the best libs and
 [researched](https://gist.github.com/jed/982883) a *much* faster, more compact 
 version that still used the best RNG available to the platform.
 
