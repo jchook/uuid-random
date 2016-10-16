@@ -22,3 +22,9 @@ Verified RFC-4122 compliance.
 
 - Improves performance when generating large batches of uuids.
 - Exposes `uuidbin()` for generating binary uuids
+
+
+1.0.5
+
+- Fixes notice when crypto is unavailable
+- Exposes `uuid.test()` function to check if a string is a valid uuid v4

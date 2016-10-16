@@ -12,6 +12,9 @@
   // Binary uuids (even faster)
   uuid.uuidbin = uuidbin;
 
+  // Test for uuidness
+  uuid.test = isUUID;
+
   // Cache toString(16)
   // This is massively impactful on performance
   for (i = 0; i < 256; i++) {
@@ -26,6 +29,10 @@
     window.uuid = uuid;
   }
 
+  function isUUID(uuid) {
+    return /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(uuid);
+  }
+
   // From MDN docs
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -33,7 +40,7 @@
 
   // Use best RNG as possible
   function randomBytes(n) {
-    if (crypto) {
+    if (typeof crypto !== 'undefined') {
       if ((typeof buf === 'undefined') || ((bufIdx + n) > uuid.BUFFER_SIZE)) {
         bufIdx = 0;
         if (crypto.getRandomValues) {
@@ -54,7 +61,7 @@
       return r;
     }
   }
-  
+
   function uuidbin() {
     var b = randomBytes(16);
     b[6] = (b[6] & 0x0f) | 0x40;

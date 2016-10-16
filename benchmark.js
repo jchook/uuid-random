@@ -4,7 +4,7 @@
 
 	To run this benchmark, first install the following:
 
-		npm install an-uiid node-uuid portable-uuid pure-uuid simply-uuid uuid
+		npm install an-uiid node-uuid portable-uuid pure-uuid simply-uuid uuid uuid-v4
 
 
 var uuids = {
@@ -44,8 +44,10 @@ for (lib in uuids) {
 }
 */
 
-// Test ours here
+// global
 var i, start, seconds, ops = 5000000;
+
+// Test ours here
 var uuidRandom = require('./index');
 start = + new Date;
 for (i = 0; i < ops; i++) uuidRandom();
