@@ -6,7 +6,7 @@
 
 		npm install an-uiid node-uuid portable-uuid pure-uuid simply-uuid uuid
 
- */
+
 var uuids = {
 
 	// Keeping up with competition
@@ -33,17 +33,30 @@ var uuids = {
 
 };
 
+
 var i, start, seconds, ops = 1000000;
 
 for (lib in uuids) {
 	start = + new Date;
-	for (i = 0; i < ops; i++) {
-	  uuids[lib]();
-	}
-
+	for (i = 0; i < ops; i++) uuids[lib]();
 	seconds = ((+new Date) - start) / 1000;
 	console.log(lib, (ops/seconds) + " ops/sec");
 }
+*/
+
+// Test ours here
+var i, start, seconds, ops = 5000000;
+var uuidRandom = require('./index');
+start = + new Date;
+for (i = 0; i < ops; i++) uuidRandom();
+seconds = ((+new Date) - start) / 1000;
+console.log('uuid-random', (ops/seconds) + " ops/sec");
+
+start = + new Date;
+for (i = 0; i < ops; i++) uuidRandom.uuidbin();
+seconds = ((+new Date) - start) / 1000;
+console.log('uuid-random-bin', (ops/seconds) + " ops/sec");
+
 
 // We leave pure-uuid out because it uses Math.random().
 // It DOES perform better but if you disable crypto, so does uuid-random!
@@ -51,8 +64,6 @@ for (lib in uuids) {
 // 
 // var pureuuid = require('pure-uuid');
 // start = + new Date;
-// for (i=0; i<ops; i++) {
-//   new pureuuid();
-// }
+// for (i=0; i<ops; i++) new pureuuid();
 // seconds = ((+new Date) - start) / 1000;
 // console.log('pureuuid', (ops/seconds) + " ops/sec");// 
