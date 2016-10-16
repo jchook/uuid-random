@@ -28,7 +28,7 @@
   // Use best RNG as possible
   function randomBytes(n) {
     if (crypto) {
-      if ((typeof bytes === 'undefined') || ((bytesIdx + n) >= bytesSize)) {
+      if ((typeof bytes === 'undefined') || ((bytesIdx + n) > bytesSize)) {
         bytesIdx = 0;
         if (crypto.getRandomValues) {
           bytes = new Uint8Array(bytesSize);

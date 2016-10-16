@@ -21,6 +21,8 @@ faster** than comparable libraries.
 | node-uuid       | 370k ops/sec       |
 | **uuid-random** | **1.618M ops/sec** |
 
+Yep, the golden ratio.
+
 
 ## Features
 
@@ -52,7 +54,7 @@ uuid(); // '0b99b82f-62cf-4275-88b3-de039020f14e'
 
 `Math.random()` sucks for uuid generation.
 
-After digging through npm and
+After digging through [npm](https://www.npmjs.com/search?q=uuid) and
 [stackoverflow](http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript/2117523#2117523),
 I settled on using [node-uuid](https://github.com/broofa/node-uuid) to take
 advantage of better RNG when possible.
@@ -60,6 +62,9 @@ advantage of better RNG when possible.
 I wasn't happy with the solution so I combined code from the best libs and
 [researched](https://gist.github.com/jed/982883) a *much* faster, more compact 
 version that still used the best RNG available to the platform.
+
+This library does one thing very well: generate UUIDv4 (random).
+
 
 ## License
 
