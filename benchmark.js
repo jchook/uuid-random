@@ -56,14 +56,3 @@ start = + new Date;
 for (i = 0; i < ops; i++) uuidRandom.uuidbin();
 seconds = ((+new Date) - start) / 1000;
 console.log('uuid-random-bin', (ops/seconds) + " ops/sec");
-
-
-// We leave pure-uuid out because it uses Math.random().
-// It DOES perform better but if you disable crypto, so does uuid-random!
-// It also has a strange OOP API that overrides UUID.prototype, etc
-// 
-// var pureuuid = require('pure-uuid');
-// start = + new Date;
-// for (i=0; i<ops; i++) new pureuuid();
-// seconds = ((+new Date) - start) / 1000;
-// console.log('pureuuid', (ops/seconds) + " ops/sec");// 

@@ -1,7 +1,7 @@
 # uuid-random
 
 Generate RFC-4122 compliant 
-[random UUIDv4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_.28random.29)
+[random UUIDs](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_.28random.29)
 with better 
 [statistical dispersion](https://en.wikipedia.org/wiki/Statistical_dispersion)
 than `Math.random()`.
@@ -14,8 +14,8 @@ than `Math.random()`.
 
 ## Performance
 
-This is the fastest pure javascript UUIDv4 generator I have found, almost **5x 
-faster** than comparable libraries.
+This is the fastest pure javascript UUID version 4 generator I have found, 
+over **5x faster** than comparable libraries.
 
 | npm package     | performance     |
 |-----------------|-----------------|
