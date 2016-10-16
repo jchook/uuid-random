@@ -17,18 +17,21 @@ faster** than comparable libraries.
 
 | npm package     | performance        |
 |-----------------|--------------------|
-| uuid            | 370k ops/sec       |
+| an-uuid         | 330k ops/sec       |
 | node-uuid       | 370k ops/sec       |
+| portable-uuid   | 260k ops/sec       |
+| simply-uuid     | 25k ops/sec        |
+| uuid            | 370k ops/sec       |
 | **uuid-random** | **1.618M ops/sec** |
 
-Yep, the golden ratio.
+Yep, the golden ratio. The benchmark file I used is available in this repo.
 
 
 ## Features
 
   * 0.3k minified + gzipped
   * Uses [better RNG](http://caniuse.com/#feat=getrandomvalues) when possible
-  * Works in browser or node
+  * Works in browser or node with zero external dependencies
   * Very fast!
 
 
