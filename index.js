@@ -1,29 +1,32 @@
+"use strict";
+
 (function(){
 
-  var i;
-  var buf;
-  var bufIdx = 0;
-  var hexBytes = [];
+  var 
+    buf,
+    bufIdx = 0,
+    hexBytes = [],
+    i
+  ;
 
   // Improve memory performance by decreasing this number (>=16)
   // or improve speed by increasing this number (try 16384)
   uuid.BUFFER_SIZE = 512;
 
   // Binary uuids (even faster)
-  uuid.uuidbin = uuidbin;
-
-  // Test for uuidness
-  uuid.test = isUUID;
+  uuid.bin = uuidbin;
 
   // Cache toString(16)
   // This is massively impactful on performance
   for (i = 0; i < 256; i++) {
+
+    // This is a fast way to ensure a 2 char hex byte
     hexBytes[i] = (i + 0x100).toString(16).substr(1);
   }
 
   // Node & Browser support
   if ((typeof module !== 'undefined') && (typeof require === 'function')) {
-    crypto = require('crypto');
+    var crypto = require('crypto');
     module.exports = uuid;
   } else if (typeof window !== 'undefined') {
     window.uuid = uuid;
@@ -40,6 +43,7 @@
 
   // Use best RNG as possible
   function randomBytes(n) {
+    var r;
     if (typeof crypto !== 'undefined') {
       if ((typeof buf === 'undefined') || ((bufIdx + n) > uuid.BUFFER_SIZE)) {
         bufIdx = 0;
@@ -55,7 +59,7 @@
       return buf.slice(bufIdx, bufIdx += n);
     } else {
       r = [];
-      for (i=0; i<n; i++) {
+      for (i = 0; i < n; i++) {
         r.push(getRandomInt(0, 16));
       }
       return r;
@@ -72,8 +76,7 @@
   // String UUIDv4 (Random)
   function uuid() {
     var b = uuidbin();
-    return '' + 
-      hexBytes[b[0]] + hexBytes[b[1]] + 
+    return hexBytes[b[0]] + hexBytes[b[1]] + 
       hexBytes[b[2]] + hexBytes[b[3]] + '-' +
       hexBytes[b[4]] + hexBytes[b[5]] + '-' +
       hexBytes[b[6]] + hexBytes[b[7]] + '-' +

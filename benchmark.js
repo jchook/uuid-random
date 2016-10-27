@@ -48,13 +48,20 @@ for (lib in uuids) {
 var i, start, seconds, ops = 5000000;
 
 // Test ours here
-var uuidRandom = require('./index');
+var uuid_random = require('./index');
 start = + new Date;
-for (i = 0; i < ops; i++) uuidRandom();
+for (i = 0; i < ops; i++) uuid_random();
 seconds = ((+new Date) - start) / 1000;
 console.log('uuid-random', (ops/seconds) + " ops/sec");
 
 start = + new Date;
-for (i = 0; i < ops; i++) uuidRandom.uuidbin();
+for (i = 0; i < ops; i++) uuid_random.bin();
 seconds = ((+new Date) - start) / 1000;
 console.log('uuid-random-bin', (ops/seconds) + " ops/sec");
+
+// node-uuid
+// var node_uuid = require('node-uuid');
+// start = + new Date;
+// for (i = 0; i < ops; i++) node_uuid();
+// seconds = ((+new Date) - start) / 1000;
+// console.log('node-uuid', (ops/seconds) + " ops/sec");

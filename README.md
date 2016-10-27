@@ -55,7 +55,7 @@ uuid(); // '0b99b82f-62cf-4275-88b3-de039020f14e'
 ### Is UUID?
 
 ```javascript
-uuid.test(uuid()); // true
+uuid.test('0b99b82f-62cf-4275-88b3-de039020f14e'); // true
 ```
 
 ## Rationale
