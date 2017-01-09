@@ -33,6 +33,19 @@ over **5x faster** than comparable libraries.
 | **uuid-random** | **2M ops/sec**  |
 
 
+## What is UUID v4?
+
+**U**niversally **U**nique **ID**entifiers transcend many constraints of 
+traditional incremental integer IDs, especially in distributed systems. With 
+version 4, we (essentially) generate a random 128-bit value.
+
+We do sacrifice guaranteed uniqueness for __extremely__ probable uniqueness (you 
+would need to do-loop `uuid()` at max speed for 73,067 years for a 50% chance of 
+**one** collision). But for that slight cost, we may now generate valid, unique, 
+persistent IDs on any node of a distributed system (e.g. a temporarily offline
+or high-latency client).
+
+
 ## Example Usage
 
 ### Node

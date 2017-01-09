@@ -59,6 +59,26 @@ for (i = 0; i < ops; i++) uuid_random.bin();
 seconds = ((+new Date) - start) / 1000;
 console.log('uuid-random-bin', (ops/seconds) + " ops/sec");
 
+var snowflake = require('./snowflake');
+start = + new Date;
+for (i = 0; i < ops; i++) snowflake();
+seconds = ((+new Date) - start) / 1000;
+console.log('snowflake', (ops/seconds) + " ops/sec");
+
+// simpleflakes
+var simpleflakes = require('simpleflakes');
+start = + new Date;
+for (i = 0; i < ops; i++) simpleflakes.simpleflake();
+seconds = ((+new Date) - start) / 1000;
+console.log('simpleflakes', (ops/seconds) + " ops/sec");
+
+// simpleflake (slow as dick)
+// var simpleflake = require('simpleflake');
+// start = + new Date;
+// for (i = 0; i < ops; i++) simpleflake();
+// seconds = ((+new Date) - start) / 1000;
+// console.log('simpleflake', (ops/seconds) + " ops/sec");
+
 // node-uuid
 // var node_uuid = require('node-uuid');
 // start = + new Date;
