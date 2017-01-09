@@ -1,12 +1,14 @@
-// Pretty slow but it works
-// 
-// Could speed up 2.0x by using UInt8Array and "carryMasks"
+//
+// Twitter Snowflake
+//
+// Currently about 750k ops/sec on a 2014 MBP
+// Could speed up 1.3x by using UInt8Array and "carryMasks"
 // https://github.com/indutny/bn.js/blob/master/lib/bn.js#L1953
+//
 
 var EPOCH = 946684800000;
-var MACHINE = 123413;
-var MACHINE_MAX = 4194303;
-
+var MACHINE = 1;
+var MAX_BITS = 64;
 var BIT_VAL = [ 
 	1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 
 	65536, 131072, 262144, 524288, 1048576, 2097152, 4194304, 8388608, 16777216, 
@@ -20,8 +22,6 @@ var BIT_VAL = [
 	576460752303423500, 1152921504606847000, 2305843009213694000, 
 	4611686018427388000, 9223372036854776000
 ];
-
-var MAX_BITS = 64;
 
 function toInt(b) {
 	var i, l, val = 0;
@@ -40,17 +40,7 @@ function toBits(val, bits) {
 		if (val >= BIT_VAL[i]) {
 			b[i] = true;
 			val -= BIT_VAL[i];
-		}
-	}
-	return b;
-}
-
-function randomBits(n) {
-	var val = rnd(0, BIT_VAL[n]);
-	var b = new Array(n);
-	for (i=0; i < n; i++) {
-		if (val & BIT_VAL[i]) {
-			b[i] = true;
+			if (val == 0) break;
 		}
 	}
 	return b;
@@ -60,19 +50,19 @@ function rnd(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function snowflake(env) {
-	var id, seq;
+function snowflake(mac, seq, time, epoch) {
 
-  // Thank the overlords for ES6
-  env || (env = {})
-
-  // TODO: env.sequence
-  env.epoch || (env.epoch = EPOCH);
-  env.machine || (env.machine = MACHINE);
-  env.timestamp || (env.timestamp = (new Date - env.epoch));
+	// defaults
+	seq = seq || rnd(0,4096);
+	mac = mac || MACHINE;
+	time = (time || (+new Date)) - (epoch || EPOCH);
 
 	// 512 bits = (42 timestamp, 10 machine, 12 sequence)
-	return toInt([].concat(randomBits(12)).concat(toBits(env.machine, 10)).concat(toBits(env.timestamp, 42)));
+	return toInt([].concat(
+		toBits(seq, 12),
+		toBits(mac, 10),
+		toBits(time, 42)
+	));
 }
 
 module && (module.exports = snowflake);
