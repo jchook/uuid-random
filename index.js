@@ -66,7 +66,7 @@
     } else {
       r = [];
       for (i = 0; i < n; i++) {
-        r.push(getRandomInt(0, 16));
+        r.push(getRandomInt(0, 255));
       }
       return r;
     }
