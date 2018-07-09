@@ -28,3 +28,8 @@ Verified RFC-4122 compliance.
 
 - Fixes notice when crypto is unavailable
 - Exposes `uuid.test()` function to check if a string is a valid uuid v4
+
+
+1.0.6
+
+- Amd Module loader support added

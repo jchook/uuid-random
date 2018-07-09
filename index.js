@@ -33,6 +33,10 @@
     module.exports = uuid;
   } else if (typeof window !== 'undefined') {
     window.uuid = uuid;
+  } else if (typeof define === "function" && define.amd) {
+    define(function() {
+      return uuid;
+    });
   }
 
   // Backup method
