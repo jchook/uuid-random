@@ -11,7 +11,7 @@ var uuids = {
 
 	// Keeping up with competition
 	'an-uuid': require('an-uuid'),
-	
+
 	// This is the "best" one
 	'node-uuid': require('node-uuid'),
 
@@ -24,7 +24,7 @@ var uuids = {
 	// Sooo slow, had to remove it..
 	// There are a whole class of modules that use this method and are slow as...
 	// 'simply-uuid': require('simply-uuid').generate,
-	
+
 	// Best npm package name
 	'uuid': require('uuid'),
 
@@ -45,7 +45,7 @@ for (lib in uuids) {
 */
 
 // global
-var i, start, seconds, ops = 5000000;
+var i, start, seconds, ops = 10000000;
 
 // Test ours here
 var uuid_random = require('./index');
@@ -66,11 +66,11 @@ seconds = ((+new Date) - start) / 1000;
 console.log('snowflake', (ops/seconds) + " ops/sec");
 
 // simpleflakes
-var simpleflakes = require('simpleflakes');
-start = + new Date;
-for (i = 0; i < ops; i++) simpleflakes.simpleflake();
-seconds = ((+new Date) - start) / 1000;
-console.log('simpleflakes', (ops/seconds) + " ops/sec");
+// var simpleflakes = require('simpleflakes');
+// start = + new Date;
+// for (i = 0; i < ops; i++) simpleflakes.simpleflake();
+// seconds = ((+new Date) - start) / 1000;
+// console.log('simpleflakes', (ops/seconds) + " ops/sec");
 
 // simpleflake (slow as dick)
 // var simpleflake = require('simpleflake');
