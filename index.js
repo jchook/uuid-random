@@ -2,11 +2,12 @@
 
 (function(){
 
-  var 
+  var
     buf,
     bufIdx = 0,
     hexBytes = [],
-    i
+    i,
+    randomBytes
   ;
 
   // Improve memory performance by decreasing this number (>=16)
@@ -34,7 +35,7 @@
   } else if( (typeof window !== 'undefined') && (typeof window.msCrypto !== 'undefined')) {
     // IE11
     _crypto = window.msCrypto;
-  } 
+  }
 
   if ((typeof module !== 'undefined') && (typeof require === 'function')) {
     _crypto = _crypto || require('crypto');
@@ -78,11 +79,12 @@
       }
       return r;
     }
+    return buf.slice(bufIdx, bufIdx += n);
   }
 
   // uuid.bin
   function uuidbin() {
-    var b = randomBytes(16);
+    var b = randomBytesBuffered(16);
     b[6] = (b[6] & 0x0f) | 0x40;
     b[8] = (b[8] & 0x3f) | 0x80;
     return b;
