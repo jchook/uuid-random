@@ -6,8 +6,7 @@
     buf,
     bufIdx = 0,
     hexBytes = [],
-    i,
-    randomBytes
+    i
   ;
 
   // Improve memory performance by decreasing this number (>=16)
@@ -21,7 +20,6 @@
   uuid.test = isUUID;
 
   // Cache toString(16)
-  // This is massively impactful on performance
   for (i = 0; i < 256; i++) {
 
     // This is a fast way to ensure a 2 char hex byte
@@ -44,6 +42,29 @@
     window.uuid = uuid;
   }
 
+  // Detect correct randomBytes function
+  var randomBytes = (function(){
+    if (typeof crypto !== 'undefined') {
+      if (crypto.randomBytes) {
+        return crypto.randomBytes;
+      }
+      if (crypto.getRandomValues) {
+        return function(n) {
+          var bytes = new Uint8Array(n);
+          crypto.getRandomValues(bytes);
+          return bytes;
+        };
+      }
+    }
+    return function(n) {
+      var i, r = [];
+      for (i = 0; i < n; i++) {
+        r.push(getRandomInt(0, 255));
+      }
+      return r;
+    };
+  })();
+
   // Backup method
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -54,6 +75,7 @@
     if (typeof uuid === 'string') {
       return /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(uuid);
     }
+    return false;
   }
 
   // Use best RNG as possible

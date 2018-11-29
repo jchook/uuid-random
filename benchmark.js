@@ -4,16 +4,17 @@
 
 	To run this benchmark, first install the following:
 
-		npm install an-uiid node-uuid portable-uuid pure-uuid simply-uuid uuid uuid-v4
+		npm install portable-uuid pure-uuid simply-uuid uuid uuid-v4 fast-uuid
 
-
+*/
 var uuids = {
 
-	// Keeping up with competition
-	'an-uuid': require('an-uuid'),
+	// Keeping up with competition, but gone now?
+	// 'an-uuid': require('an-uuid'),
 
 	// This is the "best" one
-	'node-uuid': require('node-uuid'),
+	// deprecated
+	// 'node-uuid': require('node-uuid'),
 
 	// This doesn't even work?
 	// 'performance-uuid': require('performance-uuid').uuid,
@@ -27,6 +28,9 @@ var uuids = {
 
 	// Best npm package name
 	'uuid': require('uuid'),
+
+	// 2nd best npm package name
+	'fast-uuid': require('fast-uuid').uuid4,
 
 	// This lib (fastest)
 	'uuid-random': require('./index')
@@ -42,28 +46,28 @@ for (lib in uuids) {
 	seconds = ((+new Date) - start) / 1000;
 	console.log(lib, (ops/seconds) + " ops/sec");
 }
-*/
+
 
 // global
-var i, start, seconds, ops = 10000000;
-
-// Test ours here
-var uuid_random = require('./index');
-start = + new Date;
-for (i = 0; i < ops; i++) uuid_random();
-seconds = ((+new Date) - start) / 1000;
-console.log('uuid-random', (ops/seconds) + " ops/sec");
-
-start = + new Date;
-for (i = 0; i < ops; i++) uuid_random.bin();
-seconds = ((+new Date) - start) / 1000;
-console.log('uuid-random-bin', (ops/seconds) + " ops/sec");
-
-var snowflake = require('./snowflake');
-start = + new Date;
-for (i = 0; i < ops; i++) snowflake();
-seconds = ((+new Date) - start) / 1000;
-console.log('snowflake', (ops/seconds) + " ops/sec");
+// var i, start, seconds, ops = 10000000;
+//
+// // Test ours here
+// var uuid_random = require('./index');
+// start = + new Date;
+// for (i = 0; i < ops; i++) uuid_random();
+// seconds = ((+new Date) - start) / 1000;
+// console.log('uuid-random', (ops/seconds) + " ops/sec");
+//
+// start = + new Date;
+// for (i = 0; i < ops; i++) uuid_random.bin();
+// seconds = ((+new Date) - start) / 1000;
+// console.log('uuid-random-bin', (ops/seconds) + " ops/sec");
+//
+// var snowflake = require('./snowflake');
+// start = + new Date;
+// for (i = 0; i < ops; i++) snowflake();
+// seconds = ((+new Date) - start) / 1000;
+// console.log('snowflake', (ops/seconds) + " ops/sec");
 
 // simpleflakes
 // var simpleflakes = require('simpleflakes');
