@@ -1,41 +1,44 @@
-1.0.0
+# Changelog
 
-Initial release.
-
-
-1.0.1
-
-Increased performance dramatically - now the fastest pure JS UUIDv4 generator.
+Below we list the user-friendly summaries of how this project has evolved over
+time.
 
 
-1.0.2
+## 1.0.7
 
-Bug fix.
-
-
-1.0.3
-
-Verified RFC-4122 compliance.
+- Improves performance on power, processors without branch prediction, etc
+- Benchmarks latest npm uuid packages
+- Updates code formatting and README
+- Still the fastest pure JS UUIDv4 generator x2
 
 
-1.0.4
-
-- Improves performance when generating large batches of uuids.
-- Exposes `uuidbin()` for generating binary uuids
-
-
-1.0.5
+## 1.0.5
 
 - Fixes notice when crypto is unavailable
 - Exposes `uuid.test()` function to check if a string is a valid uuid v4
 
 
-1.0.7
+## 1.0.4
 
-- Fixes browser support for crypto.getRandomValues()
-- Fixes typo
-- Thanks to [@dlongley](https://github.com/dlongley)
+- Improves performance when generating large batches of uuids
+- Exposes `uuid.bin()` for generating binary uuids
 
-1.0.8
 
-- Add fix for IE11 when using crypto library (check window.msCrypto)
+## 1.0.3
+
+- Verified RFC-4122 compliance
+
+
+## 1.0.2
+
+- Bug fix
+
+
+## 1.0.1
+
+- Increased performance dramatically - now the fastest pure JS UUIDv4 generator x5
+
+
+## 1.0.0
+
+- Initial release
