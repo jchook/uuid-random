@@ -6,7 +6,7 @@ time.
 
 ## 1.0.7
 
-- Improves performance on power, processors without branch prediction, etc
+- Minor performance improvement
 - Benchmarks latest npm uuid packages
 - Updates code formatting and README
 - Still the fastest pure JS UUIDv4 generator x2
