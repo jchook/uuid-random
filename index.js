@@ -55,7 +55,7 @@
         bufIdx = 0;
         if (crypto.getRandomValues) {
           buf = new Uint8Array(uuid.BUFFER_SIZE);
-          crypto.getRandomValues(bytes);
+          crypto.getRandomValues(buf);
         } else if (crypto.randomBytes) {
           buf = crypto.randomBytes(uuid.BUFFER_SIZE);
         } else {

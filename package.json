@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/jchook/uuid-random/issues"
   },
-  "homepage": "https://github.com/jchook/uuid-random#readme"
+  "homepage": "https://github.com/jchook/uuid-random#readme",
+  "browser": {
+    "crypto": false
+  }
 }
