@@ -28,8 +28,12 @@
   }
 
   // Node & Browser support
+  var _crypto;
+  if(typeof crypto !== 'undefined') {
+    _crypto = crypto;
+  }
   if ((typeof module !== 'undefined') && (typeof require === 'function')) {
-    var crypto = require('crypto');
+    _crypto = _crypto || require('crypto');
     module.exports = uuid;
   } else if (typeof window !== 'undefined') {
     window.uuid = uuid;
@@ -50,14 +54,14 @@
   // Use best RNG as possible
   function randomBytes(n) {
     var r;
-    if (typeof crypto !== 'undefined') {
+    if (typeof _crypto !== 'undefined') {
       if ((typeof buf === 'undefined') || ((bufIdx + n) > uuid.BUFFER_SIZE)) {
         bufIdx = 0;
-        if (crypto.getRandomValues) {
+        if (_crypto.getRandomValues) {
           buf = new Uint8Array(uuid.BUFFER_SIZE);
-          crypto.getRandomValues(buf);
-        } else if (crypto.randomBytes) {
-          buf = crypto.randomBytes(uuid.BUFFER_SIZE);
+          _crypto.getRandomValues(buf);
+        } else if (_crypto.randomBytes) {
+          buf = _crypto.randomBytes(uuid.BUFFER_SIZE);
         } else {
           throw new Error('Non-standard crypto library');
         }
