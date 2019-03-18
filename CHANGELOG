@@ -28,3 +28,10 @@ Verified RFC-4122 compliance.
 
 - Fixes notice when crypto is unavailable
 - Exposes `uuid.test()` function to check if a string is a valid uuid v4
+
+
+1.0.7
+
+- Fixes browser support for crypto.getRandomValues()
+- Fixes typo
+- Thanks to [@dlongley](https://github.com/dlongley)
