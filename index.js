@@ -31,7 +31,14 @@
   var _crypto;
   if(typeof crypto !== 'undefined') {
     _crypto = crypto;
+  } else if (window.crypto) {
+    _crypto = window.crypto;
+  } else if (window.msCrypto) {
+    _crypto = window.msCrypto;
+  } else {
+    throw new Error('Non-standard crypto library');
   }
+
   if ((typeof module !== 'undefined') && (typeof require === 'function')) {
     _crypto = _crypto || require('crypto');
     module.exports = uuid;
