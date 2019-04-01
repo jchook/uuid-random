@@ -84,7 +84,7 @@ Random (v4) UUIDs are often
 clock-based (v1), but `Math.random()`
 [sucks](https://medium.com/@betable/tifu-by-using-math-random-f1c308c4fd9d)
 [for](http://devoluk.com/google-chrome-math-random-issue.html)
-[uuid generation](http://stackoverflow.com/quTestions/6906916/collisions-when-generating-uuids-in-javascript).
+[uuid generation](http://stackoverflow.com/questions/6906916/collisions-when-generating-uuids-in-javascript).
 
 After digging through [npm](https://www.npmjs.com/search?q=uuid)
 I settled on using [node-uuid](https://github.com/broofa/node-uuid) to take
