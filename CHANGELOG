@@ -39,3 +39,4 @@ Verified RFC-4122 compliance.
 1.0.8
 
 - Add fix for IE11 when using crypto library (check window.msCrypto)
+- Refactor assigning the _crypto variable by environment
