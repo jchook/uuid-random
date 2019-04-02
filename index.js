@@ -27,36 +27,20 @@
     hexBytes[i] = (i + 0x100).toString(16).substr(1);
   }
 
+  // Node & Browser support
   var _crypto;
-  setEnvironment();
-  function setEnvironment() {
-    if(isNodeEnvironment) {
-      _crypto = _crypto || require('crypto');
-      module.exports = uuid;
-      return;
-    }
-    else if(isBrowserEnvironment) {
-      window.uuid = uuid;
+  if(typeof crypto !== 'undefined') {
+    _crypto = crypto;
+  } else if( (typeof window !== 'undefined') && (typeof window.msCrypto !== 'undefined')) {
+    // IE11
+    _crypto = window.msCrypto;
+  } 
 
-      if(typeof window.crypto !== 'undefined') {
-        _crypto = crypto;
-        return;
-      } else if (window.msCrypto) {
-        // IE11
-        _crypto = window.msCrypto;
-        return;
-      } else {
-        throw new Error('Non-standard crypto library');
-      }
-    }
-  }
-
-  function isNodeEnvironment() {
-    return ((typeof module !== 'undefined') && (typeof require === 'function'));
-  }
-
-  function isBrowserEnvironment() {
-    return typeof window !== 'undefined';
+  if ((typeof module !== 'undefined') && (typeof require === 'function')) {
+    _crypto = _crypto || require('crypto');
+    module.exports = uuid;
+  } else if (typeof window !== 'undefined') {
+    window.uuid = uuid;
   }
 
   // Backup method
