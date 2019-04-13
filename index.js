@@ -31,7 +31,11 @@
   var _crypto;
   if(typeof crypto !== 'undefined') {
     _crypto = crypto;
-  }
+  } else if( (typeof window !== 'undefined') && (typeof window.msCrypto !== 'undefined')) {
+    // IE11
+    _crypto = window.msCrypto;
+  } 
+
   if ((typeof module !== 'undefined') && (typeof require === 'function')) {
     _crypto = _crypto || require('crypto');
     module.exports = uuid;
