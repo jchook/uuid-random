@@ -3,6 +3,7 @@
   "version": "1.0.8",
   "description": "Fastest UUIDv4 with good RNG",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "minify": "minify --js < index.js > uuid-random.min.js",
     "test": "node test.js"
