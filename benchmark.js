@@ -4,10 +4,19 @@
 
 	To run this benchmark, first install the following:
 
-		npm install portable-uuid pure-uuid simply-uuid uuid uuid-v4 fast-uuid
+		npm install portable-uuid pure-uuid simply-uuid uuid uuid-v4 fast-uuid id128
 
 */
+
+var id128 = require('id128');
+
 var uuids = {
+
+	// This lib (fastest)
+	'uuid-random': require('./index'),
+
+	// Really extensive uuid lib
+	'id128': () => id128.Uuid4.generate().toCanonical(),
 
 	// No longer exists?
 	// 'an-uuid': require('an-uuid'),
@@ -26,13 +35,10 @@ var uuids = {
 	// 'simply-uuid': require('simply-uuid').generate,
 
 	// Best npm package name
-	'uuid': require('uuid'),
+	'uuid': require('uuid').v4,
 
 	// 2nd best npm package name
 	'fast-uuid': require('fast-uuid').uuid4,
-
-	// This lib (fastest)
-	'uuid-random': require('./index')
 
 };
 

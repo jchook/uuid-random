@@ -1,51 +1,47 @@
 # uuid-random
 
-Generate RFC-4122 compliant
-[random UUIDs](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_.28random.29)
-with better
-[statistical dispersion](https://en.wikipedia.org/wiki/Statistical_dispersion)
-than `Math.random()`.
+[![MIT Licence](https://img.shields.io/badge/License-MIT-informational)](https://opensource.org/licenses/mit-license.php)
+[![Stable](https://img.shields.io/badge/Stable-1.3.0-brightgreen)](https://github.com/jchook/uuid-random/releases)
+
+Generate RFC-4122 compliant [random UUIDs](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_.28random.29) (version 4) with better [statistical dispersion](https://en.wikipedia.org/wiki/Statistical_dispersion) than `Math.random()`.
 
 
 ## Install
 
-    npm install uuid-random
+```sh
+npm i uuid-random
+```
 
 
 ## Features
 
-  * 0.3k minified + gzipped
-  * Uses [better RNG](http://caniuse.com/#feat=getrandomvalues) when possible
+  * Tiny (0.3k minified + gzipped)
+  * Uses [cryptographic randomness](http://caniuse.com/#feat=getrandomvalues) when possible
   * Works in browser or node with zero external dependencies
   * Very fast!
 
 
 ## Performance
 
-This is the fastest pure javascript UUID v4 generator I have found,
-almost **5x faster** than the most popular library. After inspecting and/or testing every JS UUID package I could find (there are a ton), these were the fastest:
+Independent [benchmarks](https://github.com/aarondcohen/benchmark-guid) rank this library as the _fastest_ pure JS UUID v4 generator available with good PRNG— almost **5x faster** than the most popular library.
 
 | npm package     | performance     |
 |-----------------|-----------------|
-| **uuid-random (this)** | **2.2M ops/sec**  |
-| fast-uuid       | 1.3M ops/sec    |
+| **uuid-random** <small>(this)</small> | **2.7M ops/sec**  |
+| id128           | 2.1M ops/sec    |
 | uuid            | 502k ops/sec    |
 | portable-uuid   | 487k ops/sec    |
 
 
-*Tested using a 4.20GHz Intel i7-7700K*
+*Results above generated on a 4.20GHz Intel i7-7700K via [`benchmark.js`](benchmark.js) on Node 10.15.0*
 
-## What is UUID v4?
+## Why use UUID?
 
-**U**niversally **U**nique **ID**entifiers transcend many constraints of
-traditional incremental integer IDs, especially in distributed systems. With
-version 4, we (essentially) generate a random 128-bit value.
+**U**niversally **U**nique **ID**entifiers transcend many constraints of traditional incremental integer IDs, especially in distributed systems. In UUID version 4, we essentially generate a random 128-bit value.
 
-We do sacrifice guaranteed uniqueness for __extremely__ probable uniqueness (you
-would need to do-loop `uuid()` at max speed for 73,067 years for a 50% chance of
-**one** collision). But for that slight cost, we may now generate valid, unique,
-persistent IDs on any node of a distributed system (e.g. intermittently offline
-or high-latency clients).
+We do trade guaranteed uniqueness for __extremely__ probable uniqueness (you would need to do-loop `uuid()` at max speed for 73,067 years for a 50% chance of **one** collision). But for that slight cost, we may now generate valid, unique, persistent IDs on any node of a distributed system (e.g. intermittently offline or high-latency clients).
+
+_Note, if you plan to use UUIDs for a new project, consider a more recent standard that addresses some of the shortcomings of UUID, such as [cuid](https://github.com/ericelliott/cuid) or [ulid](https://github.com/ulid/spec). Also see [`id128`](https://github.com/aarondcohen/benchmark-guid) for a solid JS implementation._
 
 
 ## Example Usage
@@ -73,21 +69,27 @@ uuid(); // '0b99b82f-62cf-4275-88b3-de039020f14e'
 </script>
 ```
 
-### Is UUID?
+### Validate a UUID v4 String
 
 ```javascript
 uuid.test('0b99b82f-62cf-4275-88b3-de039020f14e'); // true
 ```
 
+### Generate Binary UUIDs
+
+```javascript
+uuid.bin(); // <Buffer 41 db 10 54 b3 61 48 50 87 f1 2f 7b 08 a5 0f 06>
+```
+
+
 ## Rationale
 
-Random (v4) UUIDs are [probably
-better](https://blogs.msdn.microsoft.com/oldnewthing/20160114-00/?p=92851) than
+Random (v4) UUIDs probably have [fewer collisions](https://blogs.msdn.microsoft.com/oldnewthing/20160114-00/?p=92851) than
 clock-based (v1), but `Math.random()` [sucks](https://medium.com/@betable/tifu-by-using-math-random-f1c308c4fd9d) [for](http://devoluk.com/google-chrome-math-random-issue.html) [uuid](http://stackoverflow.com/questions/6906916/collisions-when-generating-uuids-in-javascript) [generation](https://bocoup.com/blog/random-numbers).
 
 After digging through [npm](https://www.npmjs.com/search?q=fast+uuid)
 I settled on using [uuid](https://www.npmjs.com/package/uuid) to take
-advantage of better RNG when possible. It's a great lib, but seemed too large
+advantage of better RNG when possible. I liked the lib, but seemed too large
 and featured after using that neat [oneliner-ish solution](http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript/2117523#2117523).
 So, I combined ideas from the better implementations and
 [researched](https://gist.github.com/jed/982883) a *much* faster, more focused
@@ -96,25 +98,10 @@ and compact uuid generator that used the best RNG available.
 This library does one thing very well: generate UUID version 4.
 
 
+## Contributing
+
+Feel free to [open an issue](https://github.com/jchook/uuid-random/issues) or submit a [pull request](https://github.com/jchook/uuid-random/pulls).
+
 ## License
 
-MIT
-
-> Copyright (c) 2016 Wes Roberts
->
-> Permission is hereby granted, free of charge, to any person obtaining a copy of
-> this software and associated documentation files (the "Software"), to deal in
-> the Software without restriction, including without limitation the rights to
-> use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-> the Software, and to permit persons to whom the Software is furnished to do so,
-> subject to the following conditions:
->
-> The above copyright notice and this permission notice shall be included in all
-> copies or substantial portions of the Software.
->
-> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-> IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-> FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-> COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-> IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-> CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+MIT.
