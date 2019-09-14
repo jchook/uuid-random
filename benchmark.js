@@ -4,8 +4,8 @@
 
 	To run this benchmark, first install the following:
 
-		npm install portable-uuid pure-uuid simply-uuid uuid uuid-v4 fast-uuid id128
-
+		npm i uuid-random id128 portable-uuid uuid
+	
 */
 
 var id128 = require('id128');
@@ -38,7 +38,8 @@ var uuids = {
 	'uuid': require('uuid').v4,
 
 	// 2nd best npm package name
-	'fast-uuid': require('fast-uuid').uuid4,
+	// Uses Math.random()
+	// 'fast-uuid': require('fast-uuid').uuid4,
 
 };
 

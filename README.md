@@ -5,6 +5,8 @@
 
 Generate RFC-4122 compliant [random UUIDs](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_.28random.29) (version 4) with better [statistical dispersion](https://en.wikipedia.org/wiki/Statistical_dispersion) than `Math.random()`.
 
+This library does one thing very well: generate UUID version 4.
+
 
 ## Install
 
@@ -12,6 +14,7 @@ Generate RFC-4122 compliant [random UUIDs](https://en.wikipedia.org/wiki/Univers
 npm i uuid-random
 ```
 
+Or download the [latest release](https://github.com/jchook/uuid-random/releases).
 
 ## Features
 
@@ -23,7 +26,7 @@ npm i uuid-random
 
 ## Performance
 
-Independent [benchmarks](https://github.com/aarondcohen/benchmark-guid) rank this library as the _fastest_ pure JS UUID v4 generator available with good PRNG— almost **5x faster** than the most popular library.
+The included [`benchmark.js`](benchmark.js) as well as [independent benchmarks](https://github.com/aarondcohen/benchmark-guid) rank this library as the _fastest_ pure JS UUID v4 generator available with cryptographically secure PRNG— almost **5x faster** than the most popular library.
 
 | npm package     | performance     |
 |-----------------|-----------------|
@@ -33,7 +36,7 @@ Independent [benchmarks](https://github.com/aarondcohen/benchmark-guid) rank thi
 | portable-uuid   | 487k ops/sec    |
 
 
-*Results above generated on a 4.20GHz Intel i7-7700K via [`benchmark.js`](benchmark.js) on Node 10.15.0*
+*Results above generated on a 4.20GHz Intel i7-7700K with Node 10.15.0*
 
 ## Why use UUID?
 
@@ -41,7 +44,7 @@ Independent [benchmarks](https://github.com/aarondcohen/benchmark-guid) rank thi
 
 We do trade guaranteed uniqueness for __extremely__ probable uniqueness (you would need to do-loop `uuid()` at max speed for 73,067 years for a 50% chance of **one** collision). But for that slight cost, we may now generate valid, unique, persistent IDs on any node of a distributed system (e.g. intermittently offline or high-latency clients).
 
-_Note, if you plan to use UUIDs for a new project, consider a more recent standard that addresses some of the shortcomings of UUID, such as [cuid](https://github.com/ericelliott/cuid) or [ulid](https://github.com/ulid/spec). Also see [`id128`](https://github.com/aarondcohen/benchmark-guid) for a solid JS implementation._
+_Note, if you plan to use UUIDs for a new project, consider a more recent standard that addresses some of the shortcomings of UUID, such as [nanoid](https://github.com/ai/nanoid), [cuid](https://github.com/ericelliott/cuid), or [ulid](https://github.com/aarondcohen/id128)._
 
 
 ## Example Usage
@@ -80,22 +83,6 @@ uuid.test('0b99b82f-62cf-4275-88b3-de039020f14e'); // true
 ```javascript
 uuid.bin(); // <Buffer 41 db 10 54 b3 61 48 50 87 f1 2f 7b 08 a5 0f 06>
 ```
-
-
-## Rationale
-
-Random (v4) UUIDs probably have [fewer collisions](https://blogs.msdn.microsoft.com/oldnewthing/20160114-00/?p=92851) than
-clock-based (v1), but `Math.random()` [sucks](https://medium.com/@betable/tifu-by-using-math-random-f1c308c4fd9d) [for](http://devoluk.com/google-chrome-math-random-issue.html) [uuid](http://stackoverflow.com/questions/6906916/collisions-when-generating-uuids-in-javascript) [generation](https://bocoup.com/blog/random-numbers).
-
-After digging through [npm](https://www.npmjs.com/search?q=fast+uuid)
-I settled on using [uuid](https://www.npmjs.com/package/uuid) to take
-advantage of better RNG when possible. I liked the lib, but seemed too large
-and featured after using that neat [oneliner-ish solution](http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript/2117523#2117523).
-So, I combined ideas from the better implementations and
-[researched](https://gist.github.com/jed/982883) a *much* faster, more focused
-and compact uuid generator that used the best RNG available.
-
-This library does one thing very well: generate UUID version 4.
 
 
 ## Contributing
