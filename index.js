@@ -2,87 +2,91 @@
 
 (function(){
 
-  var 
+  var
     buf,
     bufIdx = 0,
     hexBytes = [],
     i
   ;
 
-  // Improve memory performance by decreasing this number (>=16)
-  // or improve speed by increasing this number (try 16384)
-  uuid.BUFFER_SIZE = 512;
-
-  // Binary uuids (even faster)
-  uuid.bin = uuidbin;
-
-  // Test for uuid
-  uuid.test = isUUID;
-
-  // Cache toString(16)
-  // This is massively impactful on performance
+  // Pre-calculate toString(16) for speed
   for (i = 0; i < 256; i++) {
-
-    // This is a fast way to ensure a 2 char hex byte
     hexBytes[i] = (i + 0x100).toString(16).substr(1);
   }
 
+  // Buffer random numbers for speed
+  // Reduce memory usage by decreasing this number (min 16)
+  // or improve speed by increasing this number (try 16384)
+  uuid.BUFFER_SIZE = 4096;
+
+  // Binary uuids
+  uuid.bin = uuidBin;
+
+  // Clear buffer
+  uuid.clearBuffer = function() {
+    buf = null;
+    bufIdx = 0;
+  };
+
+  // Test for uuid
+  uuid.test = function(uuid) {
+    if (typeof uuid === 'string') {
+      return /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(uuid);
+    }
+    return false;
+  };
+
   // Node & Browser support
-  var _crypto;
-  if(typeof crypto !== 'undefined') {
-    _crypto = crypto;
+  var crypt0;
+  if (typeof crypto !== 'undefined') {
+    crypt0 = crypto;
   } else if( (typeof window !== 'undefined') && (typeof window.msCrypto !== 'undefined')) {
-    // IE11
-    _crypto = window.msCrypto;
-  } 
+    crypt0 = window.msCrypto; // IE11
+  }
 
   if ((typeof module !== 'undefined') && (typeof require === 'function')) {
-    _crypto = _crypto || require('crypto');
+    crypt0 = crypt0 || require('crypto');
     module.exports = uuid;
   } else if (typeof window !== 'undefined') {
     window.uuid = uuid;
   }
 
-  // Backup method
-  function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-  }
-
-  // uuid.test
-  function isUUID(uuid) {
-    if (typeof uuid === 'string') {
-      return /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(uuid);
-    }
-  }
-
-  // Use best RNG as possible
-  function randomBytes(n) {
-    var r;
-    if (typeof _crypto !== 'undefined') {
-      if ((typeof buf === 'undefined') || ((bufIdx + n) > uuid.BUFFER_SIZE)) {
-        bufIdx = 0;
-        if (_crypto.getRandomValues) {
-          buf = new Uint8Array(uuid.BUFFER_SIZE);
-          _crypto.getRandomValues(buf);
-        } else if (_crypto.randomBytes) {
-          buf = _crypto.randomBytes(uuid.BUFFER_SIZE);
-        } else {
-          throw new Error('Non-standard crypto library');
-        }
+  // Use best available PRNG
+  // Also expose this so you can override it.
+  uuid.randomBytes = (function(){
+    if (crypt0) {
+      if (crypt0.randomBytes) {
+        return crypt0.randomBytes;
       }
-      return buf.slice(bufIdx, bufIdx += n);
-    } else {
-      r = [];
+      if (crypt0.getRandomValues) {
+        return function(n) {
+          var bytes = new Uint8Array(n);
+          crypt0.getRandomValues(bytes);
+          return bytes;
+        };
+      }
+    }
+    return function(n) {
+      var i, r = [];
       for (i = 0; i < n; i++) {
-        r.push(getRandomInt(0, 256));
+        r.push(Math.floor(Math.random() * 256));
       }
       return r;
+    };
+  })();
+
+  // Buffer some random bytes for speed
+  function randomBytesBuffered(n) {
+    if (!buf || ((bufIdx + n) > uuid.BUFFER_SIZE)) {
+      bufIdx = 0;
+      buf = uuid.randomBytes(uuid.BUFFER_SIZE);
     }
+    return buf.slice(bufIdx, bufIdx += n);
   }
 
   // uuid.bin
-  function uuidbin() {
-    var b = randomBytes(16);
+  function uuidBin() {
+    var b = randomBytesBuffered(16);
     b[6] = (b[6] & 0x0f) | 0x40;
     b[8] = (b[8] & 0x3f) | 0x80;
     return b;
@@ -90,7 +94,7 @@
 
   // String UUIDv4 (Random)
   function uuid() {
-    var b = uuidbin();
+    var b = uuidBin();
     return hexBytes[b[0]] + hexBytes[b[1]] +
       hexBytes[b[2]] + hexBytes[b[3]] + '-' +
       hexBytes[b[4]] + hexBytes[b[5]] + '-' +
