@@ -74,7 +74,7 @@
     } else {
       r = [];
       for (i = 0; i < n; i++) {
-        r.push(getRandomInt(0, 255));
+        r.push(getRandomInt(0, 256));
       }
       return r;
     }
@@ -91,12 +91,12 @@
   // String UUIDv4 (Random)
   function uuid() {
     var b = uuidbin();
-    return hexBytes[b[0]] + hexBytes[b[1]] + 
+    return hexBytes[b[0]] + hexBytes[b[1]] +
       hexBytes[b[2]] + hexBytes[b[3]] + '-' +
       hexBytes[b[4]] + hexBytes[b[5]] + '-' +
       hexBytes[b[6]] + hexBytes[b[7]] + '-' +
       hexBytes[b[8]] + hexBytes[b[9]] + '-' +
-      hexBytes[b[10]] + hexBytes[b[11]] + 
+      hexBytes[b[10]] + hexBytes[b[11]] +
       hexBytes[b[12]] + hexBytes[b[13]] +
       hexBytes[b[14]] + hexBytes[b[15]]
     ;
