@@ -17,7 +17,7 @@ Or download the [latest release](https://github.com/jchook/uuid-random/releases)
 
 ## Features
 
-  * Tiny (0.3k minified + gzipped)
+  * Tiny (0.6k minified + gzipped)
   * Uses [cryptographic randomness](http://caniuse.com/#feat=getrandomvalues) when possible
   * Works in browser or node with zero external dependencies
   * Very fast!
@@ -29,11 +29,10 @@ The included [`benchmark.js`](benchmark.js) as well as [independent benchmarks](
 
 | npm package     | performance     |
 |-----------------|-----------------|
-| **uuid-random** <small>(this)</small> | **2.7M ops/sec**  |
-| id128           | 2.1M ops/sec    |
-| uuid            | 502k ops/sec    |
 | portable-uuid   | 487k ops/sec    |
-
+| uuid            | 502k ops/sec    |
+| id128           | 2.1M ops/sec    |
+| **uuid-random** <small>(this)</small> | **2.7M ops/sec**  |
 
 *Results above generated on a 4.20GHz Intel i7-7700K with Node 10.15.0*
 
