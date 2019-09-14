@@ -5,7 +5,6 @@
 
 Generate RFC-4122 compliant [random UUIDs](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_.28random.29) (version 4) with better [statistical dispersion](https://en.wikipedia.org/wiki/Statistical_dispersion) than `Math.random()`.
 
-This library does one thing very well: generate UUID version 4.
 
 
 ## Install
@@ -44,7 +43,7 @@ The included [`benchmark.js`](benchmark.js) as well as [independent benchmarks](
 
 We do trade guaranteed uniqueness for __extremely__ probable uniqueness (you would need to do-loop `uuid()` at max speed for 73,067 years for a 50% chance of **one** collision). But for that slight cost, we may now generate valid, unique, persistent IDs on any node of a distributed system (e.g. intermittently offline or high-latency clients).
 
-_Note, if you plan to use UUIDs for a new project, consider a more recent standard that addresses some of the shortcomings of UUID, such as [nanoid](https://github.com/ai/nanoid), [cuid](https://github.com/ericelliott/cuid), or [ulid](https://github.com/aarondcohen/id128)._
+_Note, if you plan to use UUIDs for a new project, consider a more recent standard that addresses some of the shortcomings of UUID, such as [nanoid](https://github.com/ai/nanoid), [cuid](https://github.com/ericelliott/cuid), or [ulid](https://github.com/ulid/spec) (see [id128](https://github.com/aarondcohen/id128))._
 
 
 ## Example Usage
