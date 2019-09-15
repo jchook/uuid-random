@@ -1,6 +1,6 @@
 # uuid-random
 
-[![MIT Licence](https://img.shields.io/badge/License-MIT-informational)](https://opensource.org/licenses/mit-license.php)
+[![MIT Licence](https://img.shields.io/badge/License-MIT-informational)](LICENSE.txt)
 [![Stable](https://img.shields.io/badge/Stable-1.3.0-brightgreen)](https://github.com/jchook/uuid-random/releases)
 
 Generate RFC-4122 compliant [random UUIDs](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_.28random.29) (version 4) with better [statistical dispersion](https://en.wikipedia.org/wiki/Statistical_dispersion) than `Math.random()`.
