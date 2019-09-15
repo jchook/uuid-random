@@ -25,7 +25,7 @@ Or download the [latest release](https://github.com/jchook/uuid-random/releases)
 
 ## Performance
 
-The included [`benchmark.js`](benchmark.js) as well as [independent benchmarks](https://github.com/aarondcohen/benchmark-guid) rank this library as the _fastest_ pure JS UUID v4 generator available with cryptographically secure PRNG— almost **5x faster** than the most popular library.
+The included `benchmark.js` as well as [independent benchmarks](https://github.com/aarondcohen/benchmark-guid) rank this library as the _fastest_ pure JS UUID v4 generator available with cryptographically secure PRNG— almost **5x faster** than the most popular library.
 
 | npm package     | performance     |
 |-----------------|-----------------|
