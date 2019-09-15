@@ -19,9 +19,17 @@ Or download the [latest release](https://github.com/jchook/uuid-random/releases)
 
   * Tiny (0.6k minified + gzipped)
   * Uses [cryptographic randomness](http://caniuse.com/#feat=getrandomvalues) when possible
-  * Works in browser or node with zero external dependencies
   * Very fast!
 
+
+## Compatability
+
+Compatible with almost all versions of:
+
+- Node
+- Babel
+- TypeScript
+- Web browsers
 
 ## Performance
 
@@ -42,7 +50,7 @@ The included `benchmark.js` as well as [independent benchmarks](https://github.c
 
 We do trade guaranteed uniqueness for __extremely__ probable uniqueness (you would need to do-loop `uuid()` at max speed for 73,067 years for a 50% chance of **one** collision). But for that slight cost, we may now generate valid, unique, persistent IDs on any node of a distributed system (e.g. intermittently offline or high-latency clients).
 
-_Note, if you plan to use UUIDs for a new project, depending on your requirements, you may consider more recent standard that addresses some of the shortcomings of UUID, such as [flake-id](https://github.com/T-PWK/flake-idgen), [nanoid](https://github.com/ai/nanoid), [cuid](https://github.com/ericelliott/cuid), or [ulid](https://github.com/ulid/spec)._
+_Note, if you plan to use UUIDs for a new project, depending on your requirements, you may consider a more recent standard that addresses some of the shortcomings of UUID, such as [flake-id](https://github.com/T-PWK/flake-idgen), [nanoid](https://github.com/ai/nanoid), [cuid](https://github.com/ericelliott/cuid), or [ulid](https://github.com/ulid/spec)._
 
 
 ## Example Usage
