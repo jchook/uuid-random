@@ -81,7 +81,7 @@
       bufIdx = 0;
       buf = uuid.randomBytes(uuid.BUFFER_SIZE);
     }
-    return buf.slice(bufIdx, bufIdx += n);
+    return Array.from(buf).slice(bufIdx, bufIdx += n);
   }
 
   // uuid.bin
