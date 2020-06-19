@@ -12,7 +12,7 @@ var suite = new Benchmark.Suite()
 var id128 = require('id128')
 
 suite
-  .add('uuid-random', require('..'), { minSamples: 100 })
+  .add('uuid-random', require('..'))
   .add('id128', function () { id128.Uuid4.generate().toCanonical() })
   .add('portable-uuid', require('portable-uuid'))
   .add('uuid', require('uuid').v4)
