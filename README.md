@@ -33,14 +33,14 @@ Compatible with almost all versions of:
 
 ## Performance
 
-The included `benchmark.js` as well as [independent benchmarks](https://github.com/aarondcohen/benchmark-guid) rank this library as the _fastest_ pure JS UUID v4 generator available with cryptographically secure PRNG— almost **5x faster** than the most popular library.
+The included `benchmark.js` as well as [independent benchmarks](https://github.com/aarondcohen/benchmark-guid) rank this library as the _fastest_ pure JS UUID v4 generator available with cryptographically secure PRNG— almost **20x faster** than the most popular library (using latest NodeJS).
 
 | npm package     | performance     |
 |-----------------|-----------------|
 | portable-uuid   | 359k ops/sec    |
 | uuid            | 498k ops/sec    |
 | id128           | 3.6M ops/sec    |
-| **uuid-random** <small>(this)</small> | **10.8M ops/sec**  |
+| **uuid-random** <small>(this)</small> | **9.6M ops/sec**  |
 
 *Results above generated on a 4.20GHz Intel i7-7700K with Node v12.18.0*
 
