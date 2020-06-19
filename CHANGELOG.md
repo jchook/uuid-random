@@ -3,6 +3,12 @@
 The user-friendly summaries of how this project evolved over
 time.
 
+## 1.3.1 <small>- Jun 19, 2020</small>
+
+- Fixes issue with iOS 9 ([#15](https://github.com/jchook/uuid-random/issues/15))
+- Improves benchmarks
+
+
 ## 1.3.0 <small>- Sept 14, 2019</small>
 
 - Exposes `uuid.randomBytes()` so you can override it, e.g. with [nacl](https://github.com/dchest/tweetnacl-js#random-bytes-generation) ([#5](https://github.com/jchook/uuid-random/issues/5#issuecomment-442081338))
