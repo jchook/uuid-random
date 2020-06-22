@@ -37,10 +37,10 @@ The included `benchmark.js` as well as [independent benchmarks](https://github.c
 
 | npm package     | performance     |
 |-----------------|-----------------|
-| portable-uuid   | 359k ops/sec    |
-| uuid            | 498k ops/sec    |
-| id128           | 3.6M ops/sec    |
-| **uuid-random** <small>(this)</small> | **9.6M ops/sec**  |
+| portable-uuid   | 354k ops/sec    |
+| uuid            | 474k ops/sec    |
+| id128           | 6.0M ops/sec    |
+| **uuid-random** <small>(this)</small> | **9.7M ops/sec**  |
 
 *Results above generated on a 4.20GHz Intel i7-7700K with Node v12.18.0*
 
