@@ -6,6 +6,8 @@ time.
 ## 1.3.1 <small>- Jun 19, 2020</small>
 
 - Fixes issue with iOS 9 ([#15](https://github.com/jchook/uuid-random/issues/15))
+- Fixes issue with `test()` case-sensitivity ([#17](https://github.com/jchook/uuid-random/issues/17))
+- Improves tests
 - Improves benchmarks
 
 
