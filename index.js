@@ -59,6 +59,13 @@
         return crypt0.randomBytes;
       }
       if (crypt0.getRandomValues) {
+        if (typeof Uint8Array.prototype.slice !== 'function') {
+          return function(n) {
+            var bytes = new Uint8Array(n);
+            crypt0.getRandomValues(bytes);
+            return Array.from(bytes);
+          };
+        }
         return function(n) {
           var bytes = new Uint8Array(n);
           crypt0.getRandomValues(bytes);
