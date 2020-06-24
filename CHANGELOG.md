@@ -3,12 +3,17 @@
 The user-friendly summaries of how this project evolved over
 time.
 
-## 1.3.1 <small>- Jun 19, 2020</small>
 
-- Fixes issue with iOS 9 ([#15](https://github.com/jchook/uuid-random/issues/15))
+## 1.3.2 <small>- Jun 24, 2020</small>
+
 - Fixes issue with `test()` case-sensitivity ([#17](https://github.com/jchook/uuid-random/issues/17))
 - Improves tests
 - Improves benchmarks
+
+
+## 1.3.1 <small>- Jun 19, 2020</small>
+
+- Fixes issue with iOS 9 ([#15](https://github.com/jchook/uuid-random/issues/15))
 
 
 ## 1.3.0 <small>- Sept 14, 2019</small>
