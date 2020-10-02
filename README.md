@@ -22,7 +22,7 @@ Or download the [latest release](https://github.com/jchook/uuid-random/releases)
   * Very fast!
 
 
-## Compatability
+## Compatibility
 
 Compatible with almost all versions of:
 
