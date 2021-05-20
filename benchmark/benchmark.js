@@ -13,6 +13,7 @@ var id128 = require('id128')
 
 suite
   .add('uuid-random', require('..'))
+  .add('crypto', require('crypto').randomUUID)
   .add('id128', function () { id128.Uuid4.generate().toCanonical() })
   .add('portable-uuid', require('portable-uuid'))
   .add('uuid', require('uuid').v4)
